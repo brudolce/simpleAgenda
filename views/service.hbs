@@ -1,0 +1,19 @@
+<form action="/home/services" method="POST">
+  <div>
+    <label for="name">SERVICE NAME</label>
+    <input type="text" name="name">
+  </div>
+  <div>
+    <label for="value">SERVICE VALUE</label>
+    <input type="text" name="value">
+  </div>
+  <div>
+    <input type="submit" value="CREATE">
+  </div>
+</form>
+
+<ul>
+{{#each services}}
+  <li>{{this.name}} <a href="/home/services/{{this._id}}">EDIT</a> # <a href="/home/services/del/{{this._id}}">DELETE</a> </li> 
+{{/each}}
+</ul>
