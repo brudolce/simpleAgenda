@@ -13,7 +13,10 @@
 </form>
 
 <ul>
-{{#each services}}
-  <li>{{this.name}} <a href="/home/services/{{this._id}}">EDIT</a> # <a href="/home/services/del/{{this._id}}">DELETE</a> </li> 
-{{/each}}
+  {{#each services}}
+  <li>{{this.name}} <a href="/home/services/{{this._id}}">EDIT</a> # <a
+      href="/home/services/del/{{this._id}}">DELETE</a> </li>
+  {{/each}}
 </ul>
+
+<a href="/home">Home</a>

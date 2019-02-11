@@ -1,10 +1,46 @@
 Private page
-{{#if user}}
+<div>
+  <a href="home/services">Service</a>
+</div>
+<div>
+  <a href="/">Index</a>
+</div>
+
+<form action="/home/add/event" method="POST">
+
   <div>
-    <a href="home/services">Service</a>
+    <select name="nameService">
+      {{#each services}}
+      <option value="{{this.name}}">{{this.name}}</option>
+      {{/each}}
+    </select>
   </div>
+
   <div>
-    <a href="/">Index</a>
+    <label for="name">Name Client</label>
+    <input type="text" name="nameClient">
   </div>
-{{/if}}
-{{user}}
+
+  <div>
+    <label for="emailClient">E-mail Client</label>
+    <input type="text" name="emailClient">
+  </div>
+
+  <div>
+    <label for="day">Day</label>
+    <input type="number" name="day">
+  </div>
+
+  <div>
+    <label for="hour">Hour</label>
+    <input type="number" name="hour">
+  </div>
+
+  <input type="submit" value="Create Task">
+</form>
+
+<ul>
+  {{#each events}}
+  <li>{{this.nameClient}} - {{this.nameService}} - {{this.day}} - {{this.hour}} </li>
+  {{/each}}
+</ul>
