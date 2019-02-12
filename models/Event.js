@@ -6,8 +6,8 @@ const eventSchema = new Schema({
   nameService: String,
   nameClient: String,
   emailClient: String,
-  day: Number,
-  hour: Number,
+  day: String,
+  hour: String,
   confirmationEvent: Boolean,
   confirmationCode: String,
   userId: [{ type: Schema.Types.ObjectId, ref: 'User' }]

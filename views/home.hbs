@@ -1,46 +1,75 @@
-Private page
-<div>
-  <a href="home/services">Service</a>
+<section>
+  <div class="containerListEvent">
+    <div>
+      <form action="/home" method="post">
+        <input type="text" class="datepicker finddate" placeholder="Select Event Date" name="date" value="">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Search
+          <i class="material-icons right">search</i>
+        </button>
+      </form>
+    </div>
+
+    {{#each events}}
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-stacked">
+          <div class="card-content">
+            <h3>{{this.nameClient}}</h3>
+            <p>Service: {{this.nameService}}</p>
+            <p>Day: {{this.day}}</p>
+            <p>Hour: {{this.hour}}</p>
+          </div>
+          <div class="card-action">
+            <a href="#">Edit Event</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+  </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h3>Create Event</h3>
+    <form action="/home/add/event" method="POST" class="black-text">
+      <div class="">
+        <label for="name">Service Type</label>
+        <select name="nameService">
+          {{#each services}}
+          <option class="black-text" value="{{this.name}}">
+            <span>{{this.name}}</span>
+          </option>
+          {{/each}}
+        </select>
+      </div>
+      <div>
+        <label for="name">Name Client</label>
+        <input type="text" name="nameClient">
+      </div>
+      <div>
+        <label for="emailClient">E-mail Client</label>
+        <input type="text" name="emailClient">
+      </div>
+      <div>
+        <label for="day">Day</label>
+        <input type="text" class="datepicker newdate" placeholder="Select Event Date" name="day">
+      </div>
+      <div>
+        <label for="hour">Hour</label>
+        <input type="text" class="timepicker" placeholder="Select Event Hour" name="hour">
+      </div>
+      <div class="modal-footer">
+        <input type="submit" value="Create Task" class="btn">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      </div>
+    </form>
+  </div>
 </div>
-<div>
-  <a href="/">Index</a>
+
+<div id="btnFloat">
+  <a class="absolute waves-effect waves-light btn btn-large modal-trigger btn-floating btn-fixed" href="#modal1"><i
+      class="material-icons">add</i></a>
 </div>
-
-<form action="/home/add/event" method="POST">
-
-  <div>
-    <select name="nameService">
-      {{#each services}}
-      <option value="{{this.name}}">{{this.name}}</option>
-      {{/each}}
-    </select>
-  </div>
-
-  <div>
-    <label for="name">Name Client</label>
-    <input type="text" name="nameClient">
-  </div>
-
-  <div>
-    <label for="emailClient">E-mail Client</label>
-    <input type="text" name="emailClient">
-  </div>
-
-  <div>
-    <label for="day">Day</label>
-    <input type="number" name="day">
-  </div>
-
-  <div>
-    <label for="hour">Hour</label>
-    <input type="number" name="hour">
-  </div>
-
-  <input type="submit" value="Create Task">
-</form>
-
-<ul>
-  {{#each events}}
-  <li>{{this.nameClient}} - {{this.nameService}} - {{this.day}} - {{this.hour}} </li>
-  {{/each}}
-</ul>

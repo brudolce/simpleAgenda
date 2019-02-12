@@ -8,15 +8,64 @@ const ensureLogin = require('connect-ensure-login');
 const ServiceModel = require('../models/Service');
 const EventModel = require('../models/Event');
 
+
+function convertDate() {
+  const dateArr = new Date().toDateString().split(' ');
+  let month = '';
+
+  switch (dateArr[1]) {
+    case 'Jan':
+      month = 'January'
+      break;
+    case 'Feb':
+      month = 'February'
+      break;
+    case 'Mar':
+      month = 'March'
+      break;
+    case 'Apr':
+      month = 'April'
+      break;
+    case 'May':
+      month = 'May'
+      break;
+    case 'Jun':
+      month = 'June'
+      break;
+    case 'Jul':
+      month = 'July'
+      break;
+    case 'Aug':
+      month = 'August'
+      break;
+    case 'Sep':
+      month = 'September'
+      break;
+    case 'Sep':
+      month = 'September'
+      break;
+    case 'Oct':
+      month = 'October'
+      break;
+    case 'November':
+      month = 'Nov'
+      break;
+    case 'Dec':
+      month = 'December'
+      break;
+  }
+  return dateArr[2] + ' ' + month + ', ' + dateArr[3];
+}
+
 // Open Home and List All Events
 routes.get('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
-
-  EventModel.find({ userId: req.user._id })
+  console.log(convertDate());
+  EventModel.find({ $and: [{ userId: req.user._id }, { day: convertDate() }] })
     .then((events) => {
       ServiceModel.find({ userId: req.user._id })
         .then((services) => {
           console.log({ services, events });
-          res.render('home', { services, events });
+          res.render('home', { services, events, user: req.user });
         })
         .catch(() => {
           res.redirect('/signin');
@@ -27,6 +76,24 @@ routes.get('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
     });
 });
 
+routes.post('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
+  const { date } = req.body;
+
+  EventModel.find({ $and: [{ userId: req.user._id }, { day: date }] })
+    .then((events) => {
+      ServiceModel.find({ userId: req.user._id })
+        .then((services) => {
+          console.log({ services, events });
+          res.render('home', { services, events, user: req.user });
+        })
+        .catch(() => {
+          res.redirect('/signin');
+        });
+    })
+    .catch(() => {
+      res.redirect('/signin');
+    });
+});
 
 // Create Event
 routes.post('/home/add/event', ensureLogin.ensureLoggedIn(), (req, res) => {
@@ -49,8 +116,6 @@ routes.post('/home/add/event', ensureLogin.ensureLoggedIn(), (req, res) => {
     userId: req.user._id
   });
 
-  console.log("new Event", newEvent);
-
   newEvent.save()
     .then(() => {
       console.log('Enviando email');
@@ -71,10 +136,10 @@ routes.post('/home/add/event', ensureLogin.ensureLoggedIn(), (req, res) => {
         });
         console.log('enviando email');
       }
-      res.redirect('/home/services');
+      res.redirect('/home');
     })
     .catch(() => {
-      res.render('service');
+      res.redirect('/home');
     });
 });
 

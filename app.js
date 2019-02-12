@@ -34,6 +34,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(session({
   secret: 'our-passport-local-strategy-app',
   resave: true,
@@ -58,10 +59,10 @@ passport.use(new LocalStrategy((username, password, next) => {
       return next(err);
     }
     if (!user) {
-      return next(null, false, { message: 'Incorrect username' });
+      return next(null, false);
     }
     if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: 'Incorrect password' });
+      return next(null, false);
     }
 
     return next(null, user);

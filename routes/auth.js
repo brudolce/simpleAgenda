@@ -9,21 +9,21 @@ const User = require('../models/User');
 
 // SIGNUP
 authRoutes.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('auth/signup');
 });
 
 authRoutes.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
 
   if (username === '' || password === '') {
-    res.render('signup');
+    res.render('auth/signup');
     return;
   }
 
   User.findOne({ username })
     .then((user) => {
       if (user !== null) {
-        res.render('signup');
+        res.render('auth/signup');
         return;
       }
 
@@ -37,7 +37,7 @@ authRoutes.post('/signup', (req, res, next) => {
 
       newUser.save((err) => {
         if (err) {
-          res.render('signup');
+          res.render('auth/signup');
         } else {
           res.redirect('/');
         }
@@ -50,12 +50,12 @@ authRoutes.post('/signup', (req, res, next) => {
 
 // SIGNIN
 authRoutes.get('/signin', (req, res) => {
-  res.render('signin');
+  res.render('auth/signin');
 });
 
 authRoutes.post('/signin', passport.authenticate('local', {
   successRedirect: '/home',
-  failureRedirect: 'signin',
+  failureRedirect: '/signin',
   failureFlash: true,
   passReqToCallback: true
 }));
