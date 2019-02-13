@@ -1,3 +1,4 @@
+<script src="javascripts/edits.js"></script>
 <section>
   <div class="containerListEvent">
     <div>
@@ -13,14 +14,16 @@
     <div class="col s12 m7">
       <div class="card">
         <div class="card-stacked">
-          <div class="card-content">
+          <div class="card-content {{this.id}}">
             <h3>{{this.nameClient}}</h3>
             <p>Service: {{this.nameService}}</p>
+            <p>Email: {{this.emailClient}}</p>
             <p>Day: {{this.day}}</p>
             <p>Hour: {{this.hour}}</p>
           </div>
           <div class="card-action">
-            <a href="#">Edit Event</a>
+              <a class="waves-effect waves-light btn modal-trigger btn-floating" href="#modal2" onclick="edit('{{this.id}}');">
+                <i class="material-icons">edit</i></a>
           </div>
         </div>
       </div>
@@ -30,7 +33,7 @@
   </div>
 </section>
 
-<!-- Modal Structure -->
+<!-- Modal CREATE -->
 <div id="modal1" class="modal">
   <div class="modal-content">
     <h3>Create Event</h3>
@@ -73,3 +76,50 @@
   <a class="absolute waves-effect waves-light btn btn-large modal-trigger btn-floating btn-fixed" href="#modal1"><i
       class="material-icons">add</i></a>
 </div>
+
+
+
+<!-- Modal EDIT -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <h3>Edit Event</h3>
+    <form action="/home/event/edit" method="POST" class="black-text">
+      <div class="">
+        <label for="name">Service Type</label>
+        <select name="nameService">
+          {{#each services}}
+          <option class="black-text" value="{{this.name}}" id="{{this.name}}">
+            <span>{{this.name}}</span>
+          </option>
+          {{/each}}
+        </select>
+      </div>
+      <div>
+        <label for="name">Name Client</label>
+        <input type="text" name="nameClient" value="" id="nameEdit">
+      </div>
+      <div>
+        <label for="emailClient">E-mail Client</label>
+        <input type="text" name="emailClient" value="" id="emailEdit">
+      </div>
+      <div>
+        <label for="day">Day</label>
+        <input type="text" class="datepicker newdate" placeholder="Select Event Date" name="day" value="" id="dayEdit">
+      </div>
+      <div>
+        <label for="hour">Hour</label>
+        <input type="text" class="timepicker" placeholder="Select Event Hour" name="hour" value="" id="hourEdit">
+      </div>
+      <div>
+        <input type="text" name="id" value="" id="id" hidden>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" value="Edit Event" class="btn">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+

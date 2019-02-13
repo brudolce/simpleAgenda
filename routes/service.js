@@ -18,9 +18,18 @@ routes.get('/home/services', ensureLogin.ensureLoggedIn(), (req, res) => {
     });
 });
 
-// EDIT SERVICE GET
+// Edit Service
+routes.post('/home/service/edit', (req, res) => {
+  const { name, value, id } = req.body;
 
-// EDIT SERVICE POST
+  Service.update({ _id: id }, { name, value })
+    .then(() => {
+      res.redirect('/home/services');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 // DELETE SERVICE
 routes.get('/home/services/del/:id', (req, res) => {

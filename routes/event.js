@@ -59,7 +59,6 @@ function convertDate() {
 
 // Open Home and List All Events
 routes.get('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
-  console.log(convertDate());
   EventModel.find({ $and: [{ userId: req.user._id }, { day: convertDate() }] })
     .then((events) => {
       ServiceModel.find({ userId: req.user._id })
@@ -156,13 +155,11 @@ routes.get('/home/event/del/:id', (req, res) => {
     });
 });
 
-// Edit One Event
-
-// Requisição de EDIÇÃO
+// Edit Event
 routes.post('/home/event/edit', (req, res) => {
-  const { nameService, nameClient, emailClient, day, hour } = req.body;
+  const { nameService, nameClient, emailClient, day, hour, id } = req.body;
 
-  EventModel.update({ _id: req.query.bookId }, { nameService, nameClient, emailClient, day, hour })
+  EventModel.update({ _id: id }, { nameService, nameClient, emailClient, day, hour })
     .then(() => {
       res.redirect('/home');
     })

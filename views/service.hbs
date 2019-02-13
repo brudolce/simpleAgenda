@@ -1,3 +1,5 @@
+<script src="../javascripts/edits.js"></script>
+
 <section id="container-service">
 
   <div class="form-service">
@@ -30,17 +32,37 @@
       </li>
       {{#each services}}
       <li class="collection-item black-text">
-        <div>{{this.name}} : ${{this.value}}
+        <div class="{{this.id}}"> {{this.name}} : ${{this.value}}
           <a href="/home/services/del/{{this._id}}" class="secondary-content"><i class="material-icons">delete</i></a>
-          <a href="/home/services/edit/{{this._id}}" class="secondary-content"><i class="material-icons">edit</i></a>
+          <a href="#modal2" class="secondary-content modal-trigger" onclick="editService('{{this.id}}');"><i class="material-icons">edit</i></a>
         </div>
       </li>
-
-
-      
       {{/each}}
     </ul>
   </div>
 
+<!-- Modal EDIT -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <h3>Edit Service</h3>
+    <form action="/home/service/edit" method="POST" class="black-text">
+      <div>
+        <label for="name">Name Service</label>
+        <input type="text" name="name" value="" id="nameEdit">
+      </div>
+      <div>
+        <label for="emailClient">Value</label>
+        <input type="text" name="value" value="" id="valueEdit">
+      </div>
+      <div>
+        <input type="text" name="id" value="" id="id" hidden>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" value="Edit Service" class="btn">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
 
 </section>
