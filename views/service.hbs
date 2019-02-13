@@ -1,22 +1,46 @@
-<form action="/home/services" method="POST">
-  <div>
-    <label for="name">SERVICE NAME</label>
-    <input type="text" name="name">
-  </div>
-  <div>
-    <label for="value">SERVICE VALUE</label>
-    <input type="text" name="value">
-  </div>
-  <div>
-    <input type="submit" value="CREATE">
-  </div>
-</form>
+<section id="container-service">
 
-<ul>
-  {{#each services}}
-  <li>{{this.name}} <a href="/home/services/{{this._id}}">EDIT</a> # <a
-      href="/home/services/del/{{this._id}}">DELETE</a> </li>
-  {{/each}}
-</ul>
+  <div class="form-service">
+    <div class="row mg-top-10">
+      <form action="/home/services" method="POST" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="first_name" type="text" class="validate" name="name">
+            <label for="first_name">Service Name</label>
+          </div>
+        </div>
 
-<a href="/home">Home</a>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="text" class="validate" name="value">
+            <label for="password">Service Value</label>
+          </div>
+        </div>
+        <div>
+          <input type="submit" value="Create" class="waves-effect waves-light btn">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="container-list-services">
+    <ul class="collection with-header">
+      <li class="collection-header black-text">
+        <h4>Services</h4>
+      </li>
+      {{#each services}}
+      <li class="collection-item black-text">
+        <div>{{this.name}} : ${{this.value}}
+          <a href="/home/services/del/{{this._id}}" class="secondary-content"><i class="material-icons">delete</i></a>
+          <a href="/home/services/edit/{{this._id}}" class="secondary-content"><i class="material-icons">edit</i></a>
+        </div>
+      </li>
+
+
+      
+      {{/each}}
+    </ul>
+  </div>
+
+
+</section>

@@ -110,6 +110,29 @@ h3 {
   text-align: center;
 }
 
+
+#container-list-services {
+width: 400px;
+margin: 5px;
+padding: 5px 5px;
+
+}
+
+#container-service{
+  justify-content: center;  
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10%;  
+}
+
+.form-service {
+  margin: 5px;
+  width: 400px !important;
+  padding: 5px 5px;
+  text-align: center;
+  background-color:  rgba(158, 156, 156, 0.3);
+  color: black;
+}
 // .modal-content {
 //   overflow-y: hidden;  
 // }
