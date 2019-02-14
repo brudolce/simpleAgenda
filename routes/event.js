@@ -54,7 +54,7 @@ function convertDate() {
       month = 'December'
       break;
   }
-  return dateArr[2] + ' ' + month + ', ' + dateArr[3];
+  return `${dateArr[2]} ${month}, ${dateArr[3]}`;
 }
 
 // Open Home and List All Events
@@ -67,11 +67,11 @@ routes.get('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
           res.render('home', { services, events, user: req.user });
         })
         .catch(() => {
-          res.redirect('/signin');
+          res.redirect('/login');
         });
     })
     .catch(() => {
-      res.redirect('/signin');
+      res.redirect('/login');
     });
 });
 
@@ -86,11 +86,11 @@ routes.post('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
           res.render('home', { services, events, user: req.user });
         })
         .catch(() => {
-          res.redirect('/signin');
+          res.redirect('/login');
         });
     })
     .catch(() => {
-      res.redirect('/signin');
+      res.redirect('/login');
     });
 });
 
@@ -144,10 +144,10 @@ routes.post('/home/add/event', ensureLogin.ensureLoggedIn(), (req, res) => {
 
 
 // Delete One Event
-routes.get('/home/event/del/:id', (req, res) => {
+routes.get('/home/event/del/:id', ensureLogin.ensureLoggedIn(), (req, res) => {
   EventModel.deleteOne({ _id: req.params.id })
     .then(() => {
-      res.redirect('/home/services');
+      res.redirect('/home');
     })
     .catch((err) => {
       console.log(`Error on deleting event: ${err}`);
@@ -156,7 +156,7 @@ routes.get('/home/event/del/:id', (req, res) => {
 });
 
 // Edit Event
-routes.post('/home/event/edit', (req, res) => {
+routes.post('/home/event/edit', ensureLogin.ensureLoggedIn(), (req, res) => {
   const { nameService, nameClient, emailClient, day, hour, id } = req.body;
 
   EventModel.update({ _id: id }, { nameService, nameClient, emailClient, day, hour })

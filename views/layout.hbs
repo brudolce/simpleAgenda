@@ -22,20 +22,26 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons black-text">menu</i></a>
       <ul class="right hide-on-med-and-down">
         {{#if user}}
-          <li><a class="black-text font-source-sans-pro" href="home">HOME</a></li>
-          <li><a class="black-text font-source-sans-pro" href="home/services">SERVICE</a></li>
+        <li><a class="black-text font-source-sans-pro" href="home">HOME</a></li>
+        <li><a class="black-text font-source-sans-pro" href="home/services">SERVICE</a></li>
+        <li><a class="white-text font-source-sans-pro btn" href="/Logout">LOGOUT</a></li>
         {{/if}}
+        {{#unless user}}
         <li><a class="black-text font-source-sans-pro" href="/signup">SIGN UP</a></li>
-        <li><a class="white-text font-source-sans-pro btn" href="/signin">SIGN IN</a></li>
+        <li><a class="white-text font-source-sans-pro btn" href="/login">SIGN IN</a></li>
+        {{/unless}}
       </ul>
       <ul class="side-nav" id="mobile-demo">
         {{#if user}}
-          <li><a class="black-text font-source-sans-pro" href="home">HOME</a></li>
-          <li><a class="black-text font-source-sans-pro" href="home/services">SERVICE</a></li>
+        <li><a class="black-text font-source-sans-pro btn white lighten-4" href="home">HOME</a></li>
+        <li><a class="black-text font-source-sans-pro btn white lighten-4" href="home/services">SERVICE</a></li>
+        <li><a class="white-text font-source-sans-pro btn" href="/Logout">LOGOUT</a></li>
         {{/if}}
-        <li><a class="black-text" href="/signup">SIGN UP</a></li>
-        <li><a class="black-text" href="/signin">SIGN IN</a></li>
 
+        {{#unless user}}
+        <li><a class="black-text" href="/signup">SIGN UP</a></li>
+        <li><a class="black-text" href="/login">SIGN IN</a></li>
+        {{/unless}}
       </ul>
     </div>
   </nav>

@@ -22,8 +22,11 @@
             <p>Hour: {{this.hour}}</p>
           </div>
           <div class="card-action">
-              <a class="waves-effect waves-light btn modal-trigger btn-floating" href="#modal2" onclick="edit('{{this.id}}');">
-                <i class="material-icons">edit</i></a>
+            <a class="waves-effect waves-light btn modal-trigger btn-floating" href="#modal2"
+              onclick="edit('{{this.id}}');">
+              <i class="material-icons">edit</i></a>
+            <a class="waves-effect waves-light btn modal-trigger btn-floating" href="/home/event/del/{{this.id}}">
+              <i class="material-icons">delete</i></a>
           </div>
         </div>
       </div>
@@ -120,6 +123,3 @@
     </form>
   </div>
 </div>
-
-
-

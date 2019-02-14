@@ -37,6 +37,9 @@ body {
 .pd-10 {
   margin-left: 50px; }
 
+.mg-5 {
+  margin-top: 5% !important; }
+
 .font-source-sans-pro {
   font-family: 'Source Sans Pro', sans-serif; }
 
@@ -106,5 +109,8 @@ h3 {
   text-align: center;
   background-color: rgba(158, 156, 156, 0.3);
   color: black; }
+
+.create-acount {
+  margin-top: 2%; }
 
 /*# sourceMappingURL=style.css.map */

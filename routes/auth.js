@@ -13,10 +13,10 @@ authRoutes.get('/signup', (req, res) => {
 });
 
 authRoutes.post('/signup', (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
 
-  if (username === '' || password === '') {
-    res.render('auth/signup');
+  if (username === '' || password === '' || email === '') {
+    res.render('auth/signup', { message: 'invalid fields' });
     return;
   }
 
@@ -49,16 +49,20 @@ authRoutes.post('/signup', (req, res, next) => {
 });
 
 // SIGNIN
-authRoutes.get('/signin', (req, res) => {
+authRoutes.get('/login', (req, res) => {
   res.render('auth/signin');
 });
 
-authRoutes.post('/signin', passport.authenticate('local', {
+authRoutes.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
-  failureRedirect: '/signin',
-  failureFlash: true,
+  failureRedirect: '/auth/signin',
+  // failureFlash: true,
   passReqToCallback: true
 }));
 
+authRoutes.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
 
 module.exports = authRoutes;
