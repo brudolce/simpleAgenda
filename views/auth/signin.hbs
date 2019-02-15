@@ -3,7 +3,7 @@
     <form action="/login" method="POST" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <input id="first_name" type="text" class="validate" name="username">
+          <input id="first_name" type="text" class="validate" name="username" required="" aria-required="true">
           <label for="first_name">Username</label>
           <span class="helper-text" data-error="wrong" data-success="right"></span>
         </div>
@@ -11,7 +11,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate" name="password">
+          <input id="password" type="password" class="validate" name="password" required="" aria-required="true">
           <label for="password">Password</label>
           <span class="helper-text" data-error="wrong" data-success="right"></span>
         </div>
