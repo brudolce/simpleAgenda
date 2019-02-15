@@ -1,37 +1,42 @@
 <script src="javascripts/edits.js"></script>
 <section>
   <div class="containerListEvent">
-    <div>
+    <div class="form-search-event">
       <form action="/home" method="post">
         <input type="text" class="datepicker finddate" placeholder="Select Event Date" name="date" value="">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Search
+        <button class="btn waves-effect waves-light white black-text" type="submit" name="action">Search
           <i class="material-icons right">search</i>
         </button>
       </form>
     </div>
 
-    {{#each events}}
-    <div class="col s12 m7">
-      <div class="card">
-        <div class="card-stacked">
-          <div class="card-content {{this.id}}">
-            <h3>{{this.nameClient}}</h3>
-            <p>Service: {{this.nameService}}</p>
-            <p>Email: {{this.emailClient}}</p>
-            <p>Day: {{this.day}}</p>
-            <p>Hour: {{this.hour}}</p>
-          </div>
-          <div class="card-action">
-            <a class="waves-effect waves-light btn modal-trigger btn-floating" href="#modal2"
-              onclick="edit('{{this.id}}');">
-              <i class="material-icons">edit</i></a>
-            <a class="waves-effect waves-light btn modal-trigger btn-floating" href="/home/event/del/{{this.id}}">
-              <i class="material-icons">delete</i></a>
+    <div class="list-event">
+      {{#each events}}
+
+      <div class="col s6 m6">
+        <div class="card">
+          <div class="card-stacked">
+            <div class="card-content {{this.id}}">
+              <h3>{{this.nameClient}}</h3>
+              <p>Service: {{this.nameService}}</p>
+              <p>Email: {{this.emailClient}}</p>
+              <p>Day: {{this.day}}</p>
+              <p>Hour: {{this.hour}}</p>
+              {{#if confirmationEvent}} <button class="btn green center mg-10">Confirmed</button> {{/if}}
+              {{#unless confirmationEvent}} <button class="btn center mg-10">Not Confirmed</button> {{/unless}}
+            </div>
+            <div class="card-action">
+              <a class="waves-effect waves-light btn modal-trigger btn-floating" href="#modal2"
+                onclick="edit('{{this.id}}');">
+                <i class="material-icons">edit</i></a>
+              <a class="waves-effect waves-light btn modal-trigger btn-floating" href="/home/event/del/{{this.id}}">
+                <i class="material-icons">delete</i></a>
+            </div>
           </div>
         </div>
       </div>
+      {{/each}}
     </div>
-    {{/each}}
 
   </div>
 </section>
@@ -40,7 +45,7 @@
 <div id="modal1" class="modal">
   <div class="modal-content">
     <h3>Create Event</h3>
-    <form action="/home/add/event" method="POST" class="black-text">
+    <form action="/home/add/event" method="POST" class="black-text forms">
       <div class="">
         <label for="name">Service Type</label>
         <select name="nameService">
@@ -86,7 +91,7 @@
 <div id="modal2" class="modal">
   <div class="modal-content">
     <h3>Edit Event</h3>
-    <form action="/home/event/edit" method="POST" class="black-text">
+    <form action="/home/event/edit" method="POST" class="black-text forms">
       <div class="">
         <label for="name">Service Type</label>
         <select name="nameService">

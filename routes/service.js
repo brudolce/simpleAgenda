@@ -4,6 +4,7 @@ const routes = express.Router();
 const ensureLogin = require('connect-ensure-login');
 const Service = require('../models/Service');
 
+
 // LIST SERVICE
 routes.get('/home/services', ensureLogin.ensureLoggedIn(), (req, res) => {
   console.log(req.user._id, 'userId ');
@@ -11,7 +12,7 @@ routes.get('/home/services', ensureLogin.ensureLoggedIn(), (req, res) => {
   Service.find({ userId: req.user._id })
     .then((services) => {
       console.log(services);
-      res.render('service', { services });
+      res.render('service', { services, user: req.user });
     })
     .catch(() => {
       res.redirect('/');

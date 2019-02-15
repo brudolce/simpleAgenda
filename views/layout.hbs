@@ -18,12 +18,12 @@
 <body>
   <nav>
     <div class="nav-wrapper grey lighten-5">
-      <a href="/home" class="brand-logo black-text pd-10 font-source-sans-pro logo">SIMPLE AGENDA </a>
+      <a href="/home" class="brand-logo black-text pd-10 font-source-sans-pro logo"><img class="logo-img" src="images/logo-3.png" alt=""></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons black-text">menu</i></a>
       <ul class="right hide-on-med-and-down">
         {{#if user}}
-        <li><a class="black-text font-source-sans-pro" href="home">HOME</a></li>
-        <li><a class="black-text font-source-sans-pro" href="home/services">SERVICE</a></li>
+        <li><a class="black-text font-source-sans-pro" href="/home">HOME</a></li>
+        <li><a class="black-text font-source-sans-pro" href="/home/services">SERVICE</a></li>
         <li><a class="white-text font-source-sans-pro btn" href="/Logout">LOGOUT</a></li>
         {{/if}}
         {{#unless user}}
@@ -33,8 +33,8 @@
       </ul>
       <ul class="side-nav" id="mobile-demo">
         {{#if user}}
-        <li><a class="black-text font-source-sans-pro btn white lighten-4" href="home">HOME</a></li>
-        <li><a class="black-text font-source-sans-pro btn white lighten-4" href="home/services">SERVICE</a></li>
+        <li><a class="black-text font-source-sans-pro btn white lighten-4" href="/home">HOME</a></li>
+        <li><a class="black-text font-source-sans-pro btn white lighten-4" href="/home/services">SERVICE</a></li>
         <li><a class="white-text font-source-sans-pro btn" href="/Logout">LOGOUT</a></li>
         {{/if}}
 
