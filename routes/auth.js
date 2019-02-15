@@ -55,7 +55,7 @@ authRoutes.get('/login', (req, res) => {
 
 authRoutes.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
-  failureRedirect: '/auth/signin',
+  failureRedirect: '/login',
   // failureFlash: true,
   passReqToCallback: true
 }));

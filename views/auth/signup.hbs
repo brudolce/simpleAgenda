@@ -3,7 +3,7 @@
     <form action="/signup" method="POST" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <input id="first_name" type="text" class="validate" name="username">
+          <input id="first_name" type="text" class="validate" name="username" required="" aria-required="true">
           <label for="first_name">Username</label>
           <span class="helper-text" data-error="wrong" data-success="right"></span>
         </div>
@@ -11,7 +11,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" name="email">
+          <input id="email" type="email" class="validate" name="email" required="" aria-required="true">
           <label for="email">Email</label>
           <span class="helper-text" data-error="wrong" data-success="right"></span>
         </div>
@@ -19,7 +19,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate" name="password">
+          <input id="password" type="password" class="validate" name="password" required="" aria-required="true">
           <label for="password">Password</label>
           <span class="helper-text" data-error="wrong" data-success="right"></span>
         </div>
@@ -28,15 +28,15 @@
         <input type="submit" value="SIGN UP" class="waves-effect waves-light btn">
       </div>
     </form>
-
-    <p class="account-message">
-      Do you already have an account?
-      <a href="/login">Login</a>
-    </p>
-
-    {{#if message}}
-    <p class="error-message blue-text">{{message}}</p>
-    {{/if}}
-
   </div>
+</div>
+
+<div class="form-error-login">
+  {{#if message}}
+  <p class="error-message red-text">{{message}}</p>
+  {{/if}}
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/login">Login</a>
+  </p>
 </div>

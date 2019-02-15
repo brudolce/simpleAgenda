@@ -57,13 +57,24 @@ function convertDate() {
   return `${dateArr[2]} ${month}, ${dateArr[3]}`;
 }
 
+function hourTn(hr) {
+  let am = 0;
+  if (hr[5] === "A") { am = -1000 }
+  hr.replace('AM', '').replace('PM', '').replace(':', '');
+  return parseInt(hr) + am;
+}
+
+function sortEvent(evt) {
+  return evt.sort((a, b) => hourTn(a.hour) - hourTn(b.hour));
+}
+
 // Open Home and List All Events
 routes.get('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
   EventModel.find({ $and: [{ userId: req.user._id }, { day: convertDate() }] })
     .then((events) => {
+      sortEvent(events);
       ServiceModel.find({ userId: req.user._id })
         .then((services) => {
-          console.log({ services, events });
           res.render('home', { services, events, user: req.user });
         })
         .catch(() => {
@@ -80,9 +91,9 @@ routes.post('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
 
   EventModel.find({ $and: [{ userId: req.user._id }, { day: date }] })
     .then((events) => {
+      sortEvent(events);
       ServiceModel.find({ userId: req.user._id })
         .then((services) => {
-          console.log({ services, events });
           res.render('home', { services, events, user: req.user });
         })
         .catch(() => {
@@ -173,7 +184,6 @@ routes.get('/event/confirm/:confirmationCode', (req, res) => {
 
   EventModel.findOne({ confirmationCode })
     .then((event) => {
-      console.log(event);
       if (event !== null) {
         EventModel.updateOne({ confirmationCode }, { confirmationEvent: true })
           .then(() => {

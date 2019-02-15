@@ -16,7 +16,15 @@ nav.nav-center ul li a {
 
 .form {
   width: 300px !important;
-  margin: 8% auto;
+  margin: 8% auto 0 auto;
+  padding: 5px 5px;
+  text-align: center;
+  background-color: rgba(158, 156, 156, 0.3);
+  color: black; }
+
+.form-error-login {
+  width: 300px !important;
+  margin: 1% auto;
   padding: 5px 5px;
   text-align: center;
   background-color: rgba(158, 156, 156, 0.3);
@@ -25,20 +33,22 @@ nav.nav-center ul li a {
 body {
   background-image: url("../images/background.jpg");
   width: 100%;
-  height: 700px;
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   margin: 0px 0px;
-  padding: 0px;
-  color: white; }
+  padding: 0px; }
 
 .pd-10 {
   margin-left: 50px; }
 
 .mg-5 {
   margin-top: 5% !important; }
+
+.mg-10 {
+  margin-top: 10px !important; }
 
 .font-source-sans-pro {
   font-family: 'Source Sans Pro', sans-serif; }
@@ -47,19 +57,17 @@ body {
   font-family: 'Lora', serif; }
 
 .index-text {
-  margin: 10% 0 0 40px; }
-
-.index-text h1, p {
-  color: black; }
+  margin-top: 10%;
+  text-align: center; }
 
 .index-text h1 {
-  font-size: 5vh; }
+  font-size: 8vh;
+  font-weight: bolder; }
 
 .index-text p {
-  font-size: 3vh; }
-
-.text-p {
-  width: 40%; }
+  font-size: 4vh;
+  width: 60%;
+  margin: 0 auto 42px; }
 
 .logo {
   font-size: 5vh !important; }
@@ -68,8 +76,7 @@ body {
   margin-top: 10px !important; }
 
 .containerListEvent {
-  color: black;
-  width: 350px; }
+  color: black; }
 
 .datepicker, .timepicker {
   width: 150px !important;
@@ -112,5 +119,62 @@ h3 {
 
 .create-acount {
   margin-top: 2%; }
+
+.logo-img {
+  margin-top: 5px;
+  width: 200px; }
+
+@media only screen and (max-width: 992px) {
+  .pd-10 {
+    margin-left: 0px; } }
+
+.list-event {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  margin: 0 auto;
+  justify-content: space-evenly; }
+
+.card {
+  border-radius: 12px !important;
+  width: 250px; }
+
+.card-action {
+  display: flex;
+  justify-content: space-evenly; }
+
+.border-bottom {
+  border-bottom: 5px solid #00ac9c; }
+
+.form-search-event {
+  width: 350px;
+  background-color: #00ac9c;
+  margin: 5% auto;
+  border-radius: 14px;
+  display: flex;
+  flex-wrap: wrap; }
+
+.form-search-event form {
+  margin: 15px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding-top: 15px;
+  width: 330px; }
+
+.form-search-event form ::placeholder {
+  color: white; }
+
+.form-search-event form input {
+  color: white;
+  border-bottom-color: white !important; }
+
+.form-search-event form button {
+  margin-top: 8px; }
+
+.forms {
+  width: 50%;
+  margin: 0 auto; }
 
 /*# sourceMappingURL=style.css.map */
