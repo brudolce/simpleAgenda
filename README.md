@@ -1,8 +1,8 @@
 # SimpleAgenda
 
-##About
+## About
 Simple agenda is an application to organize your tasks, daily, organizing by service offers.
 Try it!
 
-##Site
+## Site
 https://simpleagenda.herokuapp.com/
